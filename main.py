@@ -32,3 +32,32 @@ def route_task():
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
+@app.route("/test")
+def test_page():
+    return """
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>QuantumPod Router Test</title></head>
+<body>
+  <h3>QuantumPod /route tester</h3>
+  <label>Task: <input id="task" value="portfolio_optimisation"></label>
+  <label>Complexity (0–1): <input id="complexity" type="number" step="0.01" value="0.75"></label>
+  <button id="go">Send</button>
+  <pre id="out"></pre>
+  <script>
+    document.getElementById('go').onclick = async () => {
+      const body = {
+        task: document.getElementById('task').value,
+        complexity: parseFloat(document.getElementById('complexity').value)
+      };
+      const res = await fetch('/route', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(body)
+      });
+      document.getElementById('out').textContent = await res.text();
+    };
+  </script>
+</body>
+</html>
+"""
