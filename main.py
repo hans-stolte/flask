@@ -60,7 +60,7 @@ def _decide(task: str, complexity: float) -> str:
 # ------------------------------------------------------------------------------
 @app.route("/")
 def home():
-    return "QuantumPod Alpha is online!"
+    return "QuantumPod Alpha is online! enter https://quantumpod.ai/test for application"
 
 @app.route("/health")
 def health():
